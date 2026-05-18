@@ -1,6 +1,2 @@
-namespace Sandbox;
-public static class Calc
-{
-    public static int Add(int a, int b) => a + b;
-    public static int Sub(int a, int b) => a - b;
-}
+// advanced 1779106102380
+public static int Mul(int a, int b) => a * b;
