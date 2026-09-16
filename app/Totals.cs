@@ -7,7 +7,7 @@ public static class Totals
         int total = 0;
         foreach (var entry in values)
         {
-            total += value;
+            total += entry;
         }
 
         return total;
