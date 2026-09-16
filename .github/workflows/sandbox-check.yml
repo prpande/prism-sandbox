@@ -9,11 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Restore packages
-        run: |
-          if [ -f FAIL ]; then
-            echo "curl: (56) Recv failure: ECONNRESET"
-            echo "error NU1301: Unable to load the service index for source https://api.nuget.org/v3/index.json"
-            exit 1
-          fi
-          echo "no marker, check passes"
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Build
+        run: dotnet build app/Sandbox.csproj --nologo
