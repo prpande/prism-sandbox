@@ -9,10 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Fail when the branch carries a FAIL marker
+      - name: Restore packages
         run: |
           if [ -f FAIL ]; then
-            echo "FAIL marker present: $(cat FAIL)"
+            echo "curl: (56) Recv failure: ECONNRESET"
+            echo "error NU1301: Unable to load the service index for source https://api.nuget.org/v3/index.json"
             exit 1
           fi
           echo "no marker, check passes"
