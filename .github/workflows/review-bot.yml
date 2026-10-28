@@ -1,0 +1,17 @@
+name: review-bot
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  pull-requests: write
+jobs:
+  review:
+    if: github.event.label.name == 'bot-review'
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+          REPO: ${{ github.repository }}
+        run: gh api "repos/$REPO/pulls/$PR/comments" -f body="Please add a one-line docstring to this function." -f commit_id="$SHA" -f path=pw_live.py -F line=1 -f side=RIGHT
